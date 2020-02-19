@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { FormGroup } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewUserStoryService {
 
-  isFormEmpty:boolean=false;
+  readonly rootUrl='';
 
-  constructor( ) { }
+  constructor(private http:HttpClient ) { }
+
+  postData(formData){
+    return this.http.post(this.rootUrl+'/paymentDetail',formData)
+  }
 
 }

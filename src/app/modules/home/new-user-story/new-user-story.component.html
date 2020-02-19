@@ -27,8 +27,20 @@
 
                         <div class="form-group">
                             <label>Project : </label>
-                            <input type="text" class="form-control" name="project" formControlName="project"
-                                [ngClass]="{'is-invalid':submitted && f.project.errors}">
+                            <!-- <input type="text" class="form-control" name="project" formControlName="project"
+                                [ngClass]="{'is-invalid':submitted && f.project.errors}"> -->
+
+                                <!-- <div class="dropdown">
+                                    <button id="my-dropdown" class=" dropdown-toggle" data-toggle="dropdown form-control" aria-haspopup="true" aria-expanded="false">Default project name</button>
+                                    <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                        <a class="dropdown-item active" href="#">Text</a>
+                                    </div>
+                                </div> -->
+
+                                        <input type="text" name="project" formControlName="project" class="form-control border-primary" list="codes" [(ngModel)]="codeValue" >
+                                        <datalist id="codes">
+                                          <option *ngFor="let c of codeList" [value]="c.name" >{{c.name}}</option>
+                                        </datalist>
                             <div *ngIf="submitted && f.project.errors" class="invalid-feedback">
                                 <div *ngIf="f.project.errors.required"></div>
                             </div>

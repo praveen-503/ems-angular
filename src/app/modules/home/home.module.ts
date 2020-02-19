@@ -7,6 +7,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -17,6 +18,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     HomeRoutingModule,
     ReactiveFormsModule,
     NgbModule,
+    HttpClientModule,
     MDBBootstrapModule.forRoot()
   ],
 })

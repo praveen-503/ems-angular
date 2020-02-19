@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { BillingManagerModule } from './modules/billing-manager/billing-manager.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -22,7 +23,8 @@ import { BillingManagerModule } from './modules/billing-manager/billing-manager.
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    BillingManagerModule
+    BillingManagerModule,
+    HttpClientModule
     
   ],
   providers: [],

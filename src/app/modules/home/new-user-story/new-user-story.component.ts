@@ -12,9 +12,9 @@ export class NewUserStoryComponent implements OnInit {
   userstoryForm: FormGroup;
   submitted = false;
   hourHide: boolean = false;
- 
-  constructor(private userService: NewUserStoryService, private formBuilder: FormBuilder) { }
-  
+
+  constructor(private newUserStoryService: NewUserStoryService, private formBuilder: FormBuilder) { }
+
   ngOnInit() {
     this.userstoryForm = this.formBuilder.group({
       story: [''],
@@ -22,6 +22,7 @@ export class NewUserStoryComponent implements OnInit {
       recurring: false,
       hours: []
     });
+
   }
 
   get f() {
@@ -36,9 +37,7 @@ export class NewUserStoryComponent implements OnInit {
       return;
     }
     console.log(this.userstoryForm.value);
-    this.submitted = false;
-    this.hourHide=false;
-    this.userstoryForm.reset();
+    this.insertRecord();
   }
 
   myFunction() {
@@ -50,4 +49,26 @@ export class NewUserStoryComponent implements OnInit {
       this.hourHide = true;
     }
   }
+
+  insertRecord() {
+    this.newUserStoryService.postData(this.userstoryForm).subscribe(
+      res => {
+        this.submitted = false;
+        this.hourHide = false;
+        this.userstoryForm.reset();
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+
+  codeList = [
+    { id: 1, name: 'Angular 2+' },
+    { id: 2, name: 'Angular 4' },
+    { id: 3, name: 'Angular 5' },
+    { id: 4, name: 'Angular 6' },
+    { id: 5, name: 'Angular 7' }
+  ];
+
 }
