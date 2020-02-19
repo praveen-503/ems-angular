@@ -1,1 +1,69 @@
-<h1>UserStory works</h1>
+<button type="button" mdbBtn  class="relative waves-light " style="background-color:#132a3e" (click)="basicModal.show()"
+    mdbWavesEffect><span style="color: white;">Create Us </span></button>
+
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#132a3e">
+                <button type="button" class="close pull-right" aria-label="Close" style="color: white;"
+                    (click)="basicModal.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100 " style="color: white;" id="myModalLabel">New User Story</h4>
+            </div>
+
+            <div class="modal-body">
+                <form [formGroup]="userstoryForm" (ngSubmit)="onSubmit()">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Story : </label>
+                            <input type="text" class="form-control" name="story" formControlName="story"
+                                [ngClass]="{'is-invalid':submitted && f.story.errors}">
+                            <div *ngIf="submitted && f.story.errors" class="invalid-feedback">
+                                <div *ngIf="f.story.errors.required"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Project : </label>
+                            <input type="text" class="form-control" name="project" formControlName="project"
+                                [ngClass]="{'is-invalid':submitted && f.project.errors}">
+                            <div *ngIf="submitted && f.project.errors" class="invalid-feedback">
+                                <div *ngIf="f.project.errors.required"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label>Recurring : </label> &nbsp;
+                                <input type="checkbox" id="myCheck" (click)="myFunction()" name="recurring"
+                                    formControlName="recurring"
+                                    [ngClass]="{'is-invalid':submitted && f.recurring.errors}">
+                            </div>
+
+                            <div class="col-sm-6" *ngIf="hourHide">
+                                <label>Hours : </label>
+                                <input type="number" class="form-control" name="hours" formControlName="hours"
+                                    [ngClass]="{'is-invalid':submitted && f.hours.errors}">
+                                <div *ngIf="submitted && f.hours.errors" class="invalid-feedback">
+                                    <div *ngIf="f.hours.errors.required"></div>
+
+                                    <div *ngIf="f.hours.errors.maxlength"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" style="background-color:#132a3e" mdbBtn
+                            class="btn btn-dark">Save!</button>
+
+                        <button type="button" style="background-color:#132a3e" mdbBtn class="btn btn-dark"
+                            aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
