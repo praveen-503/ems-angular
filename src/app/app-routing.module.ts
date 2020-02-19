@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BillingManagerComponent } from './modules/billing-manager/billing-manager.component';
+import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 
 
 const routes: Routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},
   {path:'home',loadChildren:'./modules/home/home.module#HomeModule'},
   {path:'enroll',loadChildren:'./modules/enroll/enroll.module#EnrollModule'},
-  {path:'billing-manager',component:BillingManagerComponent}
+  {path:'billing-manager',loadChildren:'./modules/billing-manager/billing-manager.component#BillingManagerComponent'},
+  {path:'**',component:NotFoundComponent}
 ];
 
 @NgModule({
