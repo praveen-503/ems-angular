@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {  Routes,  RouterModule } from '@angular/router';
-import { HomeComponent } from './home.component';
 import { NewUserStoryComponent } from './new-user-story/new-user-story.component';
 import { TimesheetComponent } from './timesheet/timesheet.component';
 
