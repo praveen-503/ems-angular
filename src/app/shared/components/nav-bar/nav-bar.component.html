@@ -14,16 +14,16 @@
             
         <ul class="navbar-nav mr-auto">
             <li>
-                <p>UserName</p>
-            </li>
+                <h4 style="color: white;">Hi! {{UserName}}</h4>
+            </li> &nbsp;
             <li class="nav-item">
-                <button class="pwdbtn" [routerLink]="['/Changepassword']"> ChangePassword
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" [routerLink]="['/Changepassword']"> ChangePassword
             </button>
                 
           
            </li>
             <li class="nav-item">
-                <button class="logoutbtn">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
                 Logout
                 </button>
            </li>

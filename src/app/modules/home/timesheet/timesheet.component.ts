@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NewUserStoryService } from '../new-user-story/new-user-story.service';
+import { NewUserStoryComponent } from '../new-user-story/new-user-story.component';
 
 @Component({
   selector: 'app-timesheet',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimesheetComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _userService:NewUserStoryService) { }
 
   ngOnInit() {
   }
+
+
 
 }
