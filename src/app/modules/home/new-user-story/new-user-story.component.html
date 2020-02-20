@@ -17,11 +17,11 @@
                 <form [formGroup]="userstoryForm" (ngSubmit)="onSubmit()">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>Story : </label>
-                            <input type="text" class="form-control" name="story" formControlName="story"
-                                [ngClass]="{'is-invalid':submitted && f.story.errors}">
-                            <div *ngIf="submitted && f.story.errors" class="invalid-feedback">
-                                <div *ngIf="f.story.errors.required"></div>
+                            <label>User Story : </label>
+                            <input type="text" class="form-control" name="userstory" formControlName="userstory"
+                                [ngClass]="{'is-invalid':submitted && f.userstory.errors}">
+                            <div *ngIf="submitted && f.userstory.errors" class="invalid-feedback">
+                                <div *ngIf="f.userstory.errors.required"></div>
                             </div>
                         </div>
 

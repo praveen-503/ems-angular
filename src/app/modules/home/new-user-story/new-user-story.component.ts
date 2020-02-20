@@ -17,7 +17,8 @@ export class NewUserStoryComponent implements OnInit {
 
   ngOnInit() {
     this.userstoryForm = this.formBuilder.group({
-      story: [''],
+
+      userstory: [''],
       project: [''],
       recurring: false,
       hours: []
