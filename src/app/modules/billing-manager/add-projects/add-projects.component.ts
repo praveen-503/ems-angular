@@ -22,7 +22,11 @@ export class AddProjectsComponent implements OnInit {
     { Id: 5, Name: 'Angular 7' }
   ];
 
-
+  // public saveCode(e): void {
+  //   let name = e.target.value;
+  //   let list = this.clientList.filter(x => x.name === name)[0];
+  //   console.log(list.id);
+  // }
 
   constructor(private formBuilder:FormBuilder) { }
 
