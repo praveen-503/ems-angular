@@ -1,62 +1,66 @@
-              <nav
-                class="navbar navbar-dark bg-primary navbar-expand-lg  fixed-top"
-              >
-                <a class="navbar-brand text-dark" href="#">
-                  <img src="../../assets/images/proarchpng.png" height="50px" alt="">
-                </a>
-                <button
-                  class="navbar-toggler"
-                  type="button"
-                  data-toggle="collapse"
-                  data-target="#navbarText"
-                  aria-controls="navbarText"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
-                >
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarText">
-                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                      <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active">Home</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">About</a>
-                    </li>
-                  </ul>
-                  <span class="navbar-text">
-                    <ul class="navbar-nav mr-auto">
-                        <!-- *ngIf="!authService.currentUserValue" -->
-                      <li class="nav-item" >
-                        <a
-                          class="nav-link"
-                          [routerLink]="['/enroll/register']"
-                          routerLinkActive="router-link-active"
-                          ><b>Sign Up</b> </a
-                        >
-                      </li>
-                      <li class="nav-item" >
-                        <a
-                          class="nav-link"
-                          [routerLink]="['/enroll/login']"
-                          routerLinkActive="router-link-active"
-                          > <b>Login</b> </a
-                        >
-                      </li>
-                      <li class="nav-item " >
-                        <a
-                          class="nav-link"
-                          (click)="customLogOut()"
-                          routerLinkActive="router-link-active"
-                          > <b>LogOut</b> </a
-                        >
-                        <!-- <a href="{{generateCustomLink(data)}}" target="_blank"></a> -->
-                      </li>
-                      
-                    </ul>
-                  </span>
-                </div>
-              </nav>
-              
-
-            
+<nav class="navbar navbar-dark bg-primary">
+  <!-- Navbar content -->
+</nav>
+<nav class="navbar navbar-dark bg-primary navbar-expand-lg  fixed-top">
+  <a class="navbar-brand text-dark" href="#">
+    <img src="../../assets/images/proarchpng.png" height="50px" alt="" />
+  </a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarText"
+    aria-controls="navbarText"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a
+          class="nav-link"
+          [routerLink]="['/home']"
+          routerLinkActive="router-link-active"
+          >Home</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+      <ul class="navbar-nav mr-auto">
+        <!-- *ngIf="!authService.currentUserValue" -->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/enroll/register']"
+            routerLinkActive="router-link-active"
+            ><b>Sign Up</b>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/enroll/login']"
+            routerLinkActive="router-link-active"
+          >
+            <b>Login</b>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a
+            class="nav-link"
+            (click)="customLogOut()"
+            routerLinkActive="router-link-active"
+          >
+            <b>LogOut</b>
+          </a>
+          <!-- <a href="{{generateCustomLink(data)}}" target="_blank"></a> -->
+        </li>
+      </ul>
+    </span>
+  </div>
+</nav>
