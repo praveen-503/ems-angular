@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder,Validators } from '@angular/forms';
 
 
 @Component({
@@ -33,12 +33,15 @@ export class AddProjectsComponent implements OnInit {
   ngOnInit() {
    this.addForm=this.formBuilder.group(
      {
-      addproject:[''],
+      projectname:['',Validators.required],
       addclient:['']
      }
    )
     
   
+  }
+  get f() {
+    return this.addForm.controls;
   }
   onSubmit(){
     this.submitted=true;
@@ -46,6 +49,7 @@ export class AddProjectsComponent implements OnInit {
       console.log(this.addForm.value);
       return;
     }
+   
     console.log(this.addForm.value);
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.addForm.value));
     this.addForm.reset();

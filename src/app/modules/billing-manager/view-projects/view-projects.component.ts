@@ -8,7 +8,7 @@ import { Project } from 'src/app/shared/models/project.model';
   styleUrls: ['./view-projects.component.scss']
 })
 export class ViewProjectsComponent implements OnInit {
-
+addproject;
   constructor(private service:BmserviceService) { }
 
   ngOnInit() {
