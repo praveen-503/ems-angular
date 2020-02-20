@@ -9,8 +9,8 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { BillingManagerModule } from './modules/billing-manager/billing-manager.module';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
-
-
+import { AdminModule } from './modules/admin/admin.module';
+import { AdminComponent } from './modules/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     NavBarComponent,
     FooterComponent,
     NotFoundComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     FormsModule,
     BillingManagerModule,
+    AdminModule
     
   ],
   providers: [],
