@@ -30,7 +30,7 @@ export class RegistrationComponent implements OnInit {
 //   if(this.type === 'text' && this.list) {
 //     var value = des.get.call(this);
 //     var opt = [].find.call(this.list.options, function(option) {
-//       return option.value === value;
+//       return option.value === value; 
 //     });
 //     return opt ? opt.dataset.value : value;
 //   }

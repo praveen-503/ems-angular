@@ -16,6 +16,6 @@ export class ViewProjectsComponent implements OnInit {
   }
   billingForm(bm:Project)
   {
-    this.service.FormData=Object.assign({},bm);
+    // this.service.FormData=Object.assign({},bm);
   }
 }
