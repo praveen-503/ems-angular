@@ -1,16 +1,10 @@
-<div class="row justify-content-center pt-5">
-    <div class="col-md-10 justify-content-center">
-      <div class="card">
-        <header class="card-header bg-primary">
-          <h4 class="card-title mt-2 text-white ">Add  new client</h4>
-  
-        </header>
-        <br>
+<div class="card col-md-10">
 
     <form [formGroup]="addClientForm" (ngSubmit)="onSubmit()">
-        <div class="card-body">
-
-        <div class="form-group ">
+        <div class="card-header">
+            <h3>add new client</h3>
+        </div>
+        <div class="form-group card-body">
             <label>Client Name</label>
             <input type="text" name="clientName" formControlName="clientName" class="form-control border-primary"
                 [ngClass]="{ 'is-invalid': submitted && f.clientName.errors }">
@@ -22,8 +16,6 @@
                 <button type="submit" class="btn bg-primary text-white mr-1"  >Add</button>
             </div>
         </div>
-        </div>
         <!-- form-group// -->
     </form>
 </div>
-
