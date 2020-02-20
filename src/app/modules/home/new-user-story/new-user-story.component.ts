@@ -52,16 +52,16 @@ export class NewUserStoryComponent implements OnInit {
   }
 
   insertRecord() {
-    this.newUserStoryService.postData(this.userstoryForm).subscribe(
-      res => {
-        this.submitted = false;
-        this.hourHide = false;
-        this.userstoryForm.reset();
-      },
-      err => {
-        console.log(err);
-      }
-    )
+    // this.newUserStoryService.postData(this.userstoryForm).subscribe(
+    //   res => {
+    //     this.submitted = false;
+    //     this.hourHide = false;
+    //     this.userstoryForm.reset();
+    //   },
+    //   err => {
+    //     console.log(err);
+    //   }
+    // )
   }
 
   codeList = [
