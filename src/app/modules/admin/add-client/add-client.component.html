@@ -1,1 +1,21 @@
-<p>add-client works!</p>
+<div class="card col-md-10">
+
+    <form [formGroup]="addClientForm" (ngSubmit)="onSubmit()">
+        <div class="card-header">
+            <h3>add new client</h3>
+        </div>
+        <div class="form-group card-body">
+            <label>Client Name</label>
+            <input type="text" name="clientName" formControlName="clientName" class="form-control border-primary"
+                [ngClass]="{ 'is-invalid': submitted && f.clientName.errors }">
+
+        </div>
+
+        <div class="form-group">
+            <div class="text-center">
+                <button type="submit" class="btn bg-primary text-white mr-1">Add</button>
+            </div>
+        </div>
+        <!-- form-group// -->
+    </form>
+</div>

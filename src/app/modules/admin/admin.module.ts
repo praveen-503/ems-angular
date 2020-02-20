@@ -6,13 +6,15 @@ import { AdminComponent } from './admin.component';
 import { AddClientComponent } from './add-client/add-client.component';
 import { AddProjectComponent } from './add-project/add-project.component';
 import { ViewEmployeeDisignationComponent } from './view-employee-disignation/view-employee-disignation.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [AdminComponent, AddClientComponent, AddProjectComponent, ViewEmployeeDisignationComponent],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

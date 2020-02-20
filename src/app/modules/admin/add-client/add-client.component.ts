@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add-client',
@@ -7,9 +8,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddClientComponent implements OnInit {
 
-  constructor() { }
+  addClientForm: FormGroup;
+
+  submitted: boolean = false;
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.addClientForm = this.formBuilder.group(
+      {
+        clientName: ['']
+      }
+    )}
+
+  get f() {
+    return this.addClientForm.controls;
   }
 
+  onSubmit() {
+    this.submitted = true;
+    if (this.addClientForm.invalid) {
+      console.log(this.addClientForm.value);
+      return;
+    }
+    console.log(this.addClientForm.value);
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.addClientForm.value));
+    this.addClientForm.reset();
+  }
 }
+
+
+
+
+
+
+
+
+
+
