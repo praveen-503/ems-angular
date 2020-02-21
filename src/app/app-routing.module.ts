@@ -4,10 +4,10 @@ import { NotFoundComponent } from './shared/components/not-found/not-found.compo
 
 
 const routes: Routes = [
-  {path:'',redirectTo:'home',pathMatch:'full'},
+  //{path:'',redirectTo:'home',pathMatch:'full'},
   {path:'home',loadChildren:'./modules/home/home.module#HomeModule'},
   {path:'enroll',loadChildren:'./modules/enroll/enroll.module#EnrollModule'},
-  {path:'billing-manager',loadChildren:'./modules/billing-manager/billing-manager.component#BillingManagerComponent'},
+  {path:'billing-manager',loadChildren:'./modules/billing-manager/billing-manager.module#BillingManagerModule'},
   {path:'admin',loadChildren:'./modules/admin/admin.module#AdminModule'},
   {path:'**',component:NotFoundComponent}
 ];

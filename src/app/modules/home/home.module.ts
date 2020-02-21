@@ -20,6 +20,6 @@ import { HttpClientModule } from '@angular/common/http';
     NgbModule,
     HttpClientModule,
     MDBBootstrapModule.forRoot()
-  ],
+  ]
 })
-export class HomeModule { }
+export  class HomeModule { }
