@@ -24,8 +24,7 @@ import { AdminComponent } from './modules/admin/admin.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    FormsModule,
+   
     BillingManagerModule,
     AdminModule
     
