@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BmserviceService } from '../bmservice.service';
+import { BillingManagerService } from '../billing-manager.service';
 
 @Component({
   selector: 'app-view-projects',
@@ -8,7 +8,7 @@ import { BmserviceService } from '../bmservice.service';
 })
 export class ViewProjectsComponent implements OnInit {
 addproject;
-  constructor(private service:BmserviceService) { }
+  constructor(private service:BillingManagerService) { }
 
   ngOnInit() {
    // this.service.get();
