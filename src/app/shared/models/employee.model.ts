@@ -1,5 +1,9 @@
-export class Employee {
-    Id : number;
-    EmployeeID :number;
-    Name :string;
+
+export class Employee{
+    Id:number;
+    EmployeeId: number;
+    Name:string;
+    Password:string;
+    ProjectId:number;
+    IsAccept:boolean;
 }
