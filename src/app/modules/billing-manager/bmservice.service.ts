@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Project } from 'src/app/shared/models/project.model';
+//import { Project } from 'src/app/shared/models/project.model';
 import {HttpClient} from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
 
@@ -10,9 +10,9 @@ import { FormGroup } from '@angular/forms';
 export class BmserviceService {
 
    
-FormData:Project;
+//FormData:Project;
 //readonly rootURL=  "https://localhost:44392/api/";
-list: Project[];
+//list: Project[];
 constructor(private http: HttpClient ) {}
 
 // get() {
