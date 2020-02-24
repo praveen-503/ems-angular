@@ -15,7 +15,6 @@ import { RegistrationComponent } from './registration/registration.component';
     CommonModule,
     EnrollRoutingModule,
     FormsModule, ReactiveFormsModule,
-    
   ]
 })
 export class EnrollModule { }
