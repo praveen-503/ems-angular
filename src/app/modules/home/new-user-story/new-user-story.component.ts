@@ -16,12 +16,15 @@ export class NewUserStoryComponent implements OnInit {
   constructor(private newUserStoryService: NewUserStoryService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.newUserStoryService.getProjects();
+    
     this.userstoryForm = this.formBuilder.group({
-
-      userstory: [''],
-      project: [''],
-      recurring: false,
-      hours: []
+      Id:[],
+      Name: [''],
+      ProjectId: [''],
+      IsRecurring: false,
+      DefaultHours: [],
+      
     });
 
   }
@@ -42,7 +45,7 @@ export class NewUserStoryComponent implements OnInit {
   }
 
   myFunction() {
-    var res = this.f.recurring.value;
+    var res = this.f.IsRecurring.value;
     if (res == true) {
       this.hourHide = false;
     }
@@ -50,6 +53,7 @@ export class NewUserStoryComponent implements OnInit {
       this.hourHide = true;
     }
   }
+
 
   insertRecord() {
     // this.newUserStoryService.postData(this.userstoryForm).subscribe(
@@ -62,14 +66,15 @@ export class NewUserStoryComponent implements OnInit {
     //     console.log(err);
     //   }
     // )
+    this.userstoryForm.reset();
   }
 
-  codeList = [
-    { id: 1, name: 'Angular 2+' },
-    { id: 2, name: 'Angular 4' },
-    { id: 3, name: 'Angular 5' },
-    { id: 4, name: 'Angular 6' },
-    { id: 5, name: 'Angular 7' }
-  ];
+  // codeList = [
+  //   { id: 1, name: 'Angular 2+' },
+  //   { id: 2, name: 'Angular 4' },
+  //   { id: 3, name: 'Angular 5' },
+  //   { id: 4, name: 'Angular 6' },
+  //   { id: 5, name: 'Angular 7' }
+  // ];
 
 }

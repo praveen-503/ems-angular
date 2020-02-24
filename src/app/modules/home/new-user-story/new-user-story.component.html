@@ -1,4 +1,4 @@
-<button type="button" mdbBtn  class="relative waves-light " style="background-color:#132a3e" (click)="basicModal.show()"
+<button type="button" mdbBtn class="relative waves-light " style="background-color:#132a3e" (click)="basicModal.show()"
     mdbWavesEffect><span style="color: white;">Create Us </span></button>
 
 <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
@@ -12,34 +12,51 @@
                 </button>
                 <h4 class="modal-title w-100 " style="color: white;" id="myModalLabel">New User Story</h4>
             </div>
-
-            <div class="modal-body">
+            <div class="modal-body"> 
                 <form [formGroup]="userstoryForm" (ngSubmit)="onSubmit()">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>User Story : </label>
-                            <input type="text" class="form-control" name="userstory" formControlName="userstory"
-                                [ngClass]="{'is-invalid':submitted && f.userstory.errors}">
-                            <div *ngIf="submitted && f.userstory.errors" class="invalid-feedback">
-                                <div *ngIf="f.userstory.errors.required"></div>
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label>Project : </label>
-                            <!-- <input type="text" class="form-control" name="project" formControlName="project"
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" name="Id" formControlName="Id">
+                    </div>
+
+                    <div class="form-group">
+                        <label>User Story : </label>
+                        <input type="text" class="form-control" name="Name" formControlName="Name"
+                            [ngClass]="{'is-invalid':submitted && f.Name.errors}">
+                        <div *ngIf="submitted && f.Name.errors" class="invalid-feedback">
+                            <div *ngIf="f.Name.errors.required"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Project : </label>
+                        <!-- <input type="text" class="form-control" name="project" formControlName="project"
                                 [ngClass]="{'is-invalid':submitted && f.project.errors}"> -->
 
-                                        <input type="text" name="project" formControlName="project" class="form-control border-primary" list="codes" [(ngModel)]="codeValue" >
-                                        <datalist id="codes">
-                                          <option *ngFor="let c of codeList" [value]="c.name" >{{c.name}}</option>
-                                        </datalist>
-                            <div *ngIf="submitted && f.project.errors" class="invalid-feedback">
-                                <div *ngIf="f.project.errors.required"></div>
-                            </div>
+                        <input list="Projects" name="ProjectId" formControlName="ProjectId"
+                            class="form-control border-primary">
+                        <datalist id="Projects">
+                            <option *ngFor="let p of newUserStoryService.projectList" [value]="p.Id">{{p.Name}}</option>
+                        </datalist>
+                        <div *ngIf="submitted && f.ProjectId.errors" class="invalid-feedback">
+                            <div *ngIf="f.ProjectId.errors.required"></div>
                         </div>
+                    </div>
 
-                        <!-- <select class="form-control" formControlName="DeptId" required  [ngClass]="{ 'is-invalid': submitted && f.DeptId.errors}">
+                    <!-- <div class="form-group">
+                        <label>Project Name : </label>
+                        <select class="form-control" formControlName="projectId" required
+                            [ngClass]="{ 'is-invalid': submitted && f.projectId.errors}">
+                            <div *ngIf="submitted && f.projectId.errors" class="invalid-feedback">
+                                <div *ngIf="f.projectId.errors.required">project Name is required</div>
+                            </div>
+                            <option>Select project name</option>
+                            <option *ngFor="let projId of newUserStoryService.list" [value]=projId.projectId>
+                                {{projId.DeptName}} </option>
+                        </select>
+
+                    </div> -->
+                    <!-- <select class="form-control" formControlName="DeptId" required  [ngClass]="{ 'is-invalid': submitted && f.DeptId.errors}">
                             <div *ngIf="submitted && f.DeptId.errors" class="invalid-feedback">
                                 <div *ngIf="f.DeptId.errors.required">Name is required</div>
                                 </div> 
@@ -47,36 +64,33 @@
                             <option *ngFor="let dept of deptService.list" [value]=dept.DeptId> {{dept.DeptName}} </option>
                         </select> -->
 
-                        <div class="form-group row">
-                            <div class="col-sm-6">
-                                <label>Recurring : </label> &nbsp;
-                                <input type="checkbox" id="myCheck" (click)="myFunction()" name="recurring"
-                                    formControlName="recurring"
-                                    [ngClass]="{'is-invalid':submitted && f.recurring.errors}">
-                            </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label>Recurring : </label> &nbsp;
+                            <input type="checkbox"  (click)="myFunction()" name="IsRecurring"
+                                formControlName="IsRecurring" [ngClass]="{'is-invalid':submitted && f.IsRecurring.errors}">
+                        </div>
 
-                            <div class="col-sm-6" *ngIf="hourHide">
-                                <label>Hours : </label>
-                                <input type="number" class="form-control" name="hours" formControlName="hours"
-                                    [ngClass]="{'is-invalid':submitted && f.hours.errors}">
-                                <div *ngIf="submitted && f.hours.errors" class="invalid-feedback">
-                                    <div *ngIf="f.hours.errors.required"></div>
+                        <div class="col-sm-6" *ngIf="hourHide">
+                            <label>Hours : </label>
+                            <input type="number" class="form-control" name="DefaultHours" formControlName="DefaultHours"
+                                [ngClass]="{'is-invalid':submitted && f.DefaultHours.errors}">
+                            <div *ngIf="submitted && f.DefaultHours.errors" class="invalid-feedback">
+                                <div *ngIf="f.DefaultHours.errors.required"></div>
 
-                                    <div *ngIf="f.hours.errors.maxlength"></div>
-                                </div>
+                                <div *ngIf="f.DefaultHours.errors.maxlength"></div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="modal-footer">
-                        <button type="submit" style="background-color:#132a3e" mdbBtn
-                            class="btn btn-dark">Save!</button>
+            <div class="modal-footer">
+                <button type="submit" style="background-color:#132a3e" mdbBtn class="btn btn-dark">Save!</button>
 
-                        <button type="button" style="background-color:#132a3e" mdbBtn class="btn btn-dark"
-                            aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
-                    </div>
-                </form>
+                <button type="button" style="background-color:#132a3e" mdbBtn class="btn btn-dark" aria-label="Close"
+                    (click)="basicModal.hide()" mdbWavesEffect>Close</button>
             </div>
+            </form>
+        </div>
         </div>
     </div>
 </div>
