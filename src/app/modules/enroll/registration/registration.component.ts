@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MustMatch } from '../_helpers/must-match.validator';
+import { RegistrationService } from './registration.service';
+import { Employee } from 'src/app/shared/models/employee.model';
+import { ToastrService } from 'ngx-toastr';
+import { ProjectService } from 'src/app/shared/services/project.service';
 
 @Component({
   selector: 'app-registration',
@@ -12,42 +16,30 @@ export class RegistrationComponent implements OnInit {
 
   registerForm: FormGroup;
   submitted = false;
-  projectList = [
-    { Id: 1, Name: 'Angular 2+' },
-    { Id: 2, Name: 'Angular 4' },
-    { Id: 3, Name: 'Angular 5' },
-    { Id: 4, Name: 'Angular 6' },
-    { Id: 5, Name: 'Angular 7' }
-  ];
   constructor(private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private regService: RegistrationService,
+    private projectService: ProjectService,
+    private toastr: ToastrService
+
   ) { }
 
   ngOnInit() {
+    this.projectService.getProjects();
 
-//     var des = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value');
-// Object.defineProperty(HTMLInputElement.prototype, 'value', { get: function() {
-//   if(this.type === 'text' && this.list) {
-//     var value = des.get.call(this);
-//     var opt = [].find.call(this.list.options, function(option) {
-//       return option.value === value; 
-//     });
-//     return opt ? opt.dataset.value : value;
-//   }
-// }});
+
     this.registerForm = this.formBuilder.group({
-      EmpID: ['', Validators.required,],
+      EmployeeId: ['', Validators.required],
       FirstName: ['', Validators.required],
       LastName: ['', Validators.required],
       Password: ['', [Validators.required, Validators.minLength(6)]],
       ConfirmPassword: ['', Validators.required],
-      Project: ['', Validators.required],
+      ProjectId: ['', Validators.required],
       acceptTerms: [false, Validators.requiredTrue]
-
     },
-    {
-      validator: MustMatch('Password', 'ConfirmPassword')
-    });
+      {
+        validator: MustMatch('Password', 'ConfirmPassword')
+      });
   }
 
   // convenience getter for easy access to form fields
@@ -55,13 +47,29 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    // stop here if form is invalid
     if (this.registerForm.invalid) {
-      console.log(this.registerForm.value);
       return;
     }
+    var empdata = this.registerForm.value;
+    var employee = new Employee();
+    employee.EmployeeId = empdata.EmployeeId;
+    employee.Name = empdata.FirstName + ' ' + empdata.LastName;
+    employee.Password = empdata.Password;
+    employee.ProjectId = Number(empdata.ProjectId);
+    
+    
+    this.regService.postEmployee(employee)
+      .subscribe(res => {
+        if (res.status == 200) {
+          this.toastr.success('Registerd Successfully', 'Employee ' + res.body.employeeId)
+          this.router.navigate(['/enroll/login']);
+        }
+        else {
+          console.log(res);
+        }
+      },
+        err => { console.log(err) })
 
-    console.log(this.registerForm.value);
     // this.empService.onPostemployee(this.registerForm.value as Employee)
     //   .subscribe(data => {
     //     if (data.Status == 'Error') {
@@ -77,7 +85,7 @@ export class RegistrationComponent implements OnInit {
     // display form values on success
     //alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
   }
-  
+
   onReset() {
     this.submitted = false;
     this.registerForm.reset();

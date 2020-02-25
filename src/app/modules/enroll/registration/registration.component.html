@@ -15,13 +15,15 @@
           <div class="form-group">
             <label>Employee ID</label>
             <input
-              type="number"
-              formControlName="EmpID"
+              type="text"
+              pattern= "[0-9]"
+              onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+              formControlName="EmployeeId"
               class="form-control border-primary"
-              [ngClass]="{ 'is-invalid': submitted && f.EmpID.errors }"
+              [ngClass]="{ 'is-invalid': submitted && f.EmployeeId.errors }"
             />
-            <div *ngIf="submitted && f.EmpID.errors" class="invalid-feedback">
-              <div *ngIf="f.EmpID.errors.required">Employee ID is required</div>
+            <div *ngIf="submitted && f.EmployeeId.errors" class="invalid-feedback">
+              <div *ngIf="f.EmployeeId.errors.required">Employee ID is required</div>
             </div>
           </div>
           <div class="form-row">
@@ -29,6 +31,7 @@
               <label>First Name</label>
               <input
                 type="text"
+                onkeypress="return event.charCode >= 65 && event.charCode <= 90"
                 formControlName="FirstName"
                 class="form-control border border-primary"
                 [ngClass]="{ 'is-invalid': submitted && f.FirstName.errors }"
@@ -46,6 +49,7 @@
               <label>Last Name</label>
               <input
                 type="text"
+                onkeypress="return event.charCode >= 65 && event.charCode <= 90"
                 formControlName="LastName"
                 class="form-control border-primary"
                 [ngClass]="{ 'is-invalid': submitted && f.LastName.errors }"
@@ -104,9 +108,9 @@
           </div>
           <div class="form-group">
             <label>Default Project</label>
-            <input list="projects"  class="form-control border-primary"  formControlName="Project">
+            <input list="projects"  class="form-control border-primary"  formControlName="ProjectId">
             <datalist id="projects">
-                <option *ngFor="let p of projectList" [value]="p.Id" >{{p.Name}}</option>
+                <option *ngFor="let p of projectService.projectList" [value]="p.Id" >{{p.Name}}</option>
             </datalist>
           </div>
           <div class="form-group form-check">
