@@ -15,23 +15,25 @@ clientlist: Client[];
 constructor(private http: HttpClient ) {}
 
 getProject() {
-  this.http.get(this.rootURL + '').toPromise()
+ this.http.get(this.rootURL + '').toPromise()
    .then(data => (this.list = data as Project[]));
 }
+// getClient(){
+//   return this.http.get(this.rootURL+'/client').toPromise()
+//   .then(data =>(this.clientlist = data as Client[]));
+// }
+
 getClient(){
-  this.http.get(this.rootURL+'').toPromise()
-  .then(data =>(this.clientlist = data as Client[]));
+  return this.http.get(this.rootURL+'/client');
 }
-postClient(FormData){
- 
-  console.log(FormData);
 
- return this.http.post('http://localhost:62224/api'+'/client',FormData,{observe:'response'});
-
+postClient(FormData : Client){
+ return this.http.post(this.rootURL+'/client',FormData,{observe:'response'});
 }
 
 postProject(Data){
-return this.http.post(this.rootURL+'/project',Data)
+  // console.log(Data);
+return this.http.post(this.rootURL+'/project',Data,{observe:'response'});
 }
   
 }

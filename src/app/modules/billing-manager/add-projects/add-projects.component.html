@@ -20,9 +20,17 @@
 
           </div>
 
+          <div class="form-group ">
+            <label>Client</label>
+            <input list="clientid" formControlName="Name" class="form-control border-primary" >
+            <datalist id="clientid">
+              <option *ngFor="let i of clientList" [value]="i.id" >{{i.name}}</option>
+            </datalist>
+          </div> 
+
           <div class="form-group">
             <div class="text-center">
-              <button class="btn bg-primary text-white mr-1">Add</button>
+              <button type="submit" class="btn bg-primary text-white mr-1">Add</button>
               <button class="btn btn-secondary" type="reset" (click)="onReset()">
                 Cancel
               </button>
