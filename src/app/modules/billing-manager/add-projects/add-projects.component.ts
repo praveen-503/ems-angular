@@ -15,14 +15,6 @@ export class AddProjectsComponent implements OnInit {
   submitted = false;
   //public codeValue: string;
 
-  clientList = [
-    { Id: 1, Name: 'SEDC' },
-    { Id: 2, Name: 'angular' },
-    { Id: 3, Name: 'Angular 5' },
-    { Id: 4, Name: 'Angular 6' },
-    { Id: 5, Name: 'Angular 7' }
-  ];
-
 
 
   constructor(private formBuilder: FormBuilder, private billingmanagerservice: BillingManagerService) { }
@@ -30,8 +22,9 @@ export class AddProjectsComponent implements OnInit {
   ngOnInit() {
     this.addForm = this.formBuilder.group(
       {
-        projectname: ['', Validators.required],
-        client: ['']
+
+        Projectname: ['', Validators.required],
+        
       }
     )
 
@@ -46,28 +39,15 @@ export class AddProjectsComponent implements OnInit {
       console.log(this.addForm.value);
       return;
     }
-    this.AddClient(this.addForm);
+    this.AddProject();
 
   }
   onReset() {
     this.addForm.reset();
   }
 
-  AddClient(form) {
-
-    this.billingmanagerservice.postClient(form).subscribe(
-      res => {
-        console.log(this.addForm.value);
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.addForm.value));
-        this.addForm.reset();
-      },
-      err => {
-        console.log(err);
-      }
-    )
-  }
-  AddProject(data){
-    this.billingmanagerservice.postProject(data).subscribe(
+  AddProject(){
+    this.billingmanagerservice.postProject(this.addForm).subscribe(
       res => {
         console.log(this.addForm.value);
         alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.addForm.value));

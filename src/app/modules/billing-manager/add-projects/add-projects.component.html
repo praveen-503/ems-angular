@@ -9,19 +9,13 @@
       <br>
       <form class="" [formGroup]="addForm" (ngSubmit)="onSubmit()">
         <div class="card-body">
-          <div class="form-group ">
-            <label>Client</label>
-            <input list="clients" formControlName="Client" class="form-control border-primary">
-            <datalist id="clients">
-              <option *ngFor="let c of clientList" [value]="c.Id">{{c.Name}}</option>
-            </datalist>
-          </div>
+          
           <div class="form-group">
             <label>Project Name</label>
-            <input type="text" formControlName="Projectname" class="form-control border-primary"
-              [ngClass]="{ 'is-invalid': submitted && f.projectname.errors }" />
-            <div *ngIf="submitted && f.projectname.errors" class="invalid-feedback">
-              <div *ngIf="f.projectname.errors.required">Project Name is required</div>
+            <input type="text"  formControlName="Projectname" class="form-control  border-primary"
+              [ngClass]="{ 'is-invalid': submitted && f.Projectname.errors }" >
+            <div *ngIf="submitted && f.Projectname.errors" class="invalid-feedback">
+              <div *ngIf="f.Projectname.errors.required">Project Name is required</div>
             </div>
 
           </div>
