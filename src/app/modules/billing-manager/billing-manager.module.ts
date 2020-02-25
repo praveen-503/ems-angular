@@ -6,12 +6,13 @@ import { AddProjectsComponent } from './add-projects/add-projects.component';
 import { ViewProjectsComponent } from './view-projects/view-projects.component';
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { BillingManagerComponent } from './billing-manager.component';
+import { AddClientsComponent } from './add-clients/add-clients.component';
 
 
 
 
 @NgModule({
-  declarations: [BillingManagerComponent, AddProjectsComponent, ViewProjectsComponent],
+  declarations: [BillingManagerComponent, AddProjectsComponent, ViewProjectsComponent, AddClientsComponent],
   imports: [
     CommonModule,
     BillingManagerRoutingModule,

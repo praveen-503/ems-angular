@@ -1,5 +1,5 @@
 export class Project {
     Id:number;
-    ClientId:string;
+    ClientId:number;
     Name:string;
 }

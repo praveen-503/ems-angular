@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder,Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { BillingManagerService } from '../billing-manager.service';
 
 
 @Component({
@@ -9,49 +10,54 @@ import { FormGroup, FormBuilder,Validators } from '@angular/forms';
 })
 export class AddProjectsComponent implements OnInit {
 
-  addForm:FormGroup;
+  addForm: FormGroup;
 
-  submitted=false;
-  public codeValue: string;
-
-  clientList = [
-    { Id: 1, Name: 'SEDC' },
-    { Id: 2, Name: 'angular' },
-    { Id: 3, Name: 'Angular 5' },
-    { Id: 4, Name: 'Angular 6' },
-    { Id: 5, Name: 'Angular 7' }
-  ];
+  submitted = false;
+  //public codeValue: string;
 
 
 
-  constructor(private formBuilder:FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private billingmanagerservice: BillingManagerService) { }
 
   ngOnInit() {
-   this.addForm=this.formBuilder.group(
-     {
-      projectname:['',Validators.required],
-      addclient:['']
-     }
-   )
-    
-  
+    this.addForm = this.formBuilder.group(
+      {
+
+        Projectname: ['', Validators.required],
+        
+      }
+    )
+
+
   }
   get f() {
     return this.addForm.controls;
   }
-  onSubmit(){
-    this.submitted=true;
-    if(this.addForm.invalid){
+  onSubmit() {
+    this.submitted = true;
+    if (this.addForm.invalid) {
       console.log(this.addForm.value);
       return;
     }
-   
-    console.log(this.addForm.value);
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.addForm.value));
+    this.AddProject();
+
+  }
+  onReset() {
     this.addForm.reset();
   }
-  onReset(){
-    this.addForm.reset();
+
+  AddProject(){
+    this.billingmanagerservice.postProject(this.addForm).subscribe(
+      res => {
+        console.log(this.addForm.value);
+        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.addForm.value));
+        this.addForm.reset();
+      },
+      err => {
+        console.log(err);
+      }
+    )
+   
   }
 
 }
