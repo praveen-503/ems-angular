@@ -15,9 +15,7 @@
             <div class="modal-body"> 
                 <form [formGroup]="userstoryForm" (ngSubmit)="onSubmit()">
 
-                    <div class="form-group">
                         <input type="hidden" class="form-control" name="Id" formControlName="Id">
-                    </div>
 
                     <div class="form-group">
                         <label>User Story : </label>
@@ -30,8 +28,8 @@
 
                     <div class="form-group">
                         <label>Project : </label>
-                        <!-- <input type="text" class="form-control" name="project" formControlName="project"
-                                [ngClass]="{'is-invalid':submitted && f.project.errors}"> -->
+                        <!-- <input type="text" class="form-control" name="ProjectId" formControlName="ProjectId"
+                                [ngClass]="{'is-invalid':submitted && f.ProjectId.errors}"> -->
 
                         <input list="Projects" name="ProjectId" formControlName="ProjectId"
                             class="form-control border-primary">
@@ -67,7 +65,7 @@
                     <div class="form-group row">
                         <div class="col-sm-6">
                             <label>Recurring : </label> &nbsp;
-                            <input type="checkbox"  (click)="myFunction()" name="IsRecurring"
+                            <input type="checkbox"  (click)="RecurringFunction()" name="IsRecurring"
                                 formControlName="IsRecurring" [ngClass]="{'is-invalid':submitted && f.IsRecurring.errors}">
                         </div>
 

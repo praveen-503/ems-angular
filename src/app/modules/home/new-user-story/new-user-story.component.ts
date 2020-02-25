@@ -19,7 +19,7 @@ export class NewUserStoryComponent implements OnInit {
     this.newUserStoryService.getProjects();
     
     this.userstoryForm = this.formBuilder.group({
-      Id:[],
+      Id:[''],
       Name: [''],
       ProjectId: [''],
       IsRecurring: false,
@@ -35,16 +35,18 @@ export class NewUserStoryComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    
     if (this.userstoryForm.invalid) {
       console.log("error in form");
 
       return;
     }
     console.log(this.userstoryForm.value);
-    this.insertRecord();
+    this.insertUserStoryRecord();
   }
 
-  myFunction() {
+  RecurringFunction() {
+
     var res = this.f.IsRecurring.value;
     if (res == true) {
       this.hourHide = false;
@@ -55,18 +57,19 @@ export class NewUserStoryComponent implements OnInit {
   }
 
 
-  insertRecord() {
-    // this.newUserStoryService.postData(this.userstoryForm).subscribe(
-    //   res => {
-    //     this.submitted = false;
-    //     this.hourHide = false;
-    //     this.userstoryForm.reset();
-    //   },
-    //   err => {
-    //     console.log(err);
-    //   }
-    // )
-    this.userstoryForm.reset();
+  insertUserStoryRecord() {
+    console.log(this.userstoryForm.value,"Value is above");
+    this.newUserStoryService.postUserStory(this.userstoryForm.value).subscribe(
+      res => {
+        this.submitted = false;
+        this.hourHide = false;
+        this.userstoryForm.reset();
+      },
+      err => {
+        console.log(err);
+      }
+    )
+    // this.userstoryForm.reset();
   }
 
   // codeList = [

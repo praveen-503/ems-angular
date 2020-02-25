@@ -20,7 +20,7 @@ export class NewUserStoryService {
   ];
 
 
-  readonly rootUrl='';
+  readonly rootUrl='https://localhost:44399';
 list:NewUserStory[];
   constructor(private http:HttpClient ) { 
 
@@ -29,8 +29,9 @@ list:NewUserStory[];
 
   getProjects(){
   }
-  postData(formData){
-    return this.http.post(this.rootUrl+'/paymentDetail',formData)
+  postUserStory(userStoryFormData){
+    return this.http.post(this.rootUrl+'/PostUserStory',userStoryFormData)
+    
   }
 
 }
