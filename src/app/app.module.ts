@@ -12,8 +12,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +29,6 @@ import { ToastrModule } from 'ngx-toastr';
     BillingManagerModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    
     
   ],
   providers: [],
