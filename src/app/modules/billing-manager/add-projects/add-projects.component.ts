@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder,Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { BillingManagerService } from '../billing-manager.service';
 
 
 @Component({
@@ -9,10 +10,10 @@ import { FormGroup, FormBuilder,Validators } from '@angular/forms';
 })
 export class AddProjectsComponent implements OnInit {
 
-  addForm:FormGroup;
+  addForm: FormGroup;
 
-  submitted=false;
-  public codeValue: string;
+  submitted = false;
+  //public codeValue: string;
 
   clientList = [
     { Id: 1, Name: 'SEDC' },
@@ -24,34 +25,59 @@ export class AddProjectsComponent implements OnInit {
 
 
 
-  constructor(private formBuilder:FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private billingmanagerservice: BillingManagerService) { }
 
   ngOnInit() {
-   this.addForm=this.formBuilder.group(
-     {
-      projectname:['',Validators.required],
-      addclient:['']
-     }
-   )
-    
-  
+    this.addForm = this.formBuilder.group(
+      {
+        projectname: ['', Validators.required],
+        client: ['']
+      }
+    )
+
+
   }
   get f() {
     return this.addForm.controls;
   }
-  onSubmit(){
-    this.submitted=true;
-    if(this.addForm.invalid){
+  onSubmit() {
+    this.submitted = true;
+    if (this.addForm.invalid) {
       console.log(this.addForm.value);
       return;
     }
-   
-    console.log(this.addForm.value);
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.addForm.value));
+    this.AddClient(this.addForm);
+
+  }
+  onReset() {
     this.addForm.reset();
   }
-  onReset(){
-    this.addForm.reset();
+
+  AddClient(form) {
+
+    this.billingmanagerservice.postClient(form).subscribe(
+      res => {
+        console.log(this.addForm.value);
+        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.addForm.value));
+        this.addForm.reset();
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+  AddProject(data){
+    this.billingmanagerservice.postProject(data).subscribe(
+      res => {
+        console.log(this.addForm.value);
+        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.addForm.value));
+        this.addForm.reset();
+      },
+      err => {
+        console.log(err);
+      }
+    )
+   
   }
 
 }

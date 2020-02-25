@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BmserviceService } from '../bmservice.service';
-import { Project } from 'src/app/shared/models/project.model';
+import { BillingManagerService } from '../billing-manager.service';
 
 @Component({
   selector: 'app-view-projects',
@@ -9,12 +8,12 @@ import { Project } from 'src/app/shared/models/project.model';
 })
 export class ViewProjectsComponent implements OnInit {
 addproject;
-  constructor(private service:BmserviceService) { }
+  constructor(private service:BillingManagerService) { }
 
   ngOnInit() {
    // this.service.get();
   }
-  billingForm(bm:Project)
+  billingForm()
   {
     // this.service.FormData=Object.assign({},bm);
   }
