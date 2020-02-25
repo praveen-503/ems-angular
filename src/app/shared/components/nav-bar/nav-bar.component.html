@@ -33,7 +33,7 @@
     <span class="navbar-text">
       <ul class="navbar-nav mr-auto">
         <!-- *ngIf="!authService.currentUserValue" -->
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!authService.currentUserValue">
           <a
             class="nav-link"
             [routerLink]="['/enroll/register']"
@@ -41,7 +41,7 @@
             ><b>Sign Up</b>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!authService.currentUserValue">
           <a
             class="nav-link"
             [routerLink]="['/enroll/login']"
@@ -50,7 +50,7 @@
             <b>Login</b>
           </a>
         </li>
-        <li class="nav-item ">
+        <li class="nav-item " *ngIf="authService.currentUserValue">
           <a
             class="nav-link"
             (click)="customLogOut()"

@@ -17,19 +17,20 @@
               <label>Employee ID</label>
               <input
                 type="text"
-                formControlName="EmpID"
+                formControlName="EmployeeId"
                 class="form-control border-primary"
-                [ngClass]="{ 'is-invalid': submitted && f.EmpID.errors }"
+                [ngClass]="{ 'is-invalid': submitted && f.EmployeeId.errors }"
               />
-              <div *ngIf="submitted && f.EmpID.errors" class="invalid-feedback">
-                <div *ngIf="f.EmpID.errors.required">Employee ID is required</div>
+              <div *ngIf="submitted && f.EmployeeId.errors" class="invalid-feedback">
+                <div *ngIf="f.EmployeeId.errors.required">Employee ID is required</div>
                 
               </div>
             
             </div>
             <!-- form-group end.// -->
             <div class="form-group">
-              <label>Password</label>
+               <label>Password</label>
+              
               <input
                 type="password"
                 formControlName="Password"
@@ -44,21 +45,22 @@
                 <div *ngIf="f.Password.errors.minlength">
                   Password must be at least 6 characters
                 </div>
-              </div>
+              </div> 
+              
             </div>
             <div class="form-group form-check">
                 <input
                   type="checkbox"
-                  formControlName="acceptTerms"
-                  id="acceptTerms"
+                  formControlName="saveCredentials"
+                  id="saveCredentials"
                   class="form-check-input border-primary"
-                  [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }"
+                  [ngClass]="{ 'is-invalid': submitted && f.saveCredentials.errors }"
                 />
-                <label for="acceptTerms" class="form-check-label"
-                  >Save Employee ID and Password</label
+                <label for="saveCredentials" class="form-check-label"
+                  >Save Employee</label
                 >
                 <div
-                  *ngIf="submitted && f.acceptTerms.errors"
+                  *ngIf="submitted && f.saveCredentials.errors"
                   class="invalid-feedback"
                 >
                   Accept Ts & Cs is required
