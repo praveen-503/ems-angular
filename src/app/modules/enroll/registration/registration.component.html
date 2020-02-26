@@ -68,8 +68,9 @@
             <input
               type="password"
               formControlName="Password"
-              class="form-control border-primary"
+              class="form-control border-primary fa fa-fw fa-eye field-icon toggle-password"
               [ngClass]="{ 'is-invalid': submitted && f.Password.errors }"
+              style="cursor: pointer; pointer-events: all;"
             />
             <div
               *ngIf="submitted && f.Password.errors"
