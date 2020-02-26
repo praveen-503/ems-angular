@@ -9,7 +9,7 @@ import {environment} from '../../../environments/environment'
 })
 export class BillingManagerService {
 //FormData:Project;/client
-readonly rootURL=  environment.apiURI;
+readonly rootURL=  environment.apiUri;
 list: Project[];
 clientlist: Client[];
 constructor(private http: HttpClient ) {}
