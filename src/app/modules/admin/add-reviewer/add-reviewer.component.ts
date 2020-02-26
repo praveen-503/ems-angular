@@ -11,9 +11,5 @@ export class AddReviewerComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  
-
   }
-
-
 }

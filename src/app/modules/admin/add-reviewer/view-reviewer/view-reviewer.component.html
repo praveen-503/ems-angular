@@ -1,1 +1,14 @@
 <p>view-reviewer works!</p>
+<p style="text-decoration: underline;"> <b>Reviewer Details </b> </p>
+<table class="table table-hover">
+    <tr>
+        <th>EmployeeId</th>
+        <th>EmployeeName</th>
+        <th>Project</th>
+    </tr>
+    <tr *ngFor="let Ed of adminService.reviewerList">
+   <td>{{Ed.EmployeeId}}</td>
+   <td>{{Ed.Name}}</td>
+   <td>{{Ed.DefaultProject}}</td>
+    </tr>
+</table>

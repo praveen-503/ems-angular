@@ -1,1 +1,14 @@
 <p>view-billing-manager works!</p>
+<p style="text-decoration: underline;"> <b>Reviewer Details </b> </p>
+<table class="table table-hover">
+    <tr>
+        <th>EmployeeId</th>
+        <th>EmployeeName</th>
+    </tr>
+    <tr *ngFor="let Ed of adminService.billingManagerList">
+        <td>{{Ed.EmployeeId}}</td>
+        <td>{{Ed.Name}}</td>
+        <!-- <td  (click)="populateDetails(Ed)"> {{deptService.DeptName}} </td>  -->
+        <!-- <td>   <i class="material-icons text-danger" style="font-size:26px" (click)="onDelete(Ed.EmpId)">delete</i></td> -->
+    </tr>
+</table>

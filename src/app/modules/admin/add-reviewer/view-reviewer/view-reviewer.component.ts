@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../../admin.service';
 
 @Component({
   selector: 'app-view-reviewer',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewReviewerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private adminService:AdminService) { }
 
   ngOnInit() {
+   this.adminService.getReviewer();
   }
-
 }

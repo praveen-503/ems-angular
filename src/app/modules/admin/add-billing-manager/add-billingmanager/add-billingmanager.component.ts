@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { AdminService } from '../../admin.service';
+import { BillingManager } from '../billing-manager.model';
 
 @Component({
   selector: 'app-add-billingmanager',
@@ -10,14 +12,14 @@ export class AddBillingmanagerComponent implements OnInit {
   addBillingManagerForm:FormGroup;
   submitted = false;
 
-  constructor(private formBuilder:FormBuilder) { }
+  constructor(private formBuilder:FormBuilder,
+              private adminService:AdminService) { }
 
   ngOnInit() {
     this.addBillingManagerForm=this.formBuilder.group({
       EmployeeId:0,
       Name:[''],
       IsBillingManager:false,
-
 
     });
   }
@@ -35,30 +37,33 @@ export class AddBillingmanagerComponent implements OnInit {
       return;
     }
     console.log(this.addBillingManagerForm.value);
-    this.insertRecord();
+    this.insertBillingManagerRecord(this.addBillingManagerForm.value as BillingManager);
   }
 
-  myFunction() {
-
+  isBillingManager() {
     var res = this.f.IsBillingManager.value;
-    if (res == true) {
+    if (res == false) {
       console.log("Now He/She is billing-manager");
-      // this.hourHide = false;
+      //role=2;
     }
     else {
       console.log("Now He/She is not a billing-manager");
-
-      // this.hourHide = true;
+      //role=1;
     }
   }
 
-
-  insertRecord() {
+  insertBillingManagerRecord(data:BillingManager) {
     console.log(this.addBillingManagerForm.value,"Value is above");
-   
+    this.adminService.postBillingManager(data).subscribe(
+      res=>{
         this.submitted = false;
-        // this.hourHide = false;
         this.addBillingManagerForm.reset();
+      },
+      err=>{
+        console.log(err);
+      }
+    )
+        
   }
 
 }

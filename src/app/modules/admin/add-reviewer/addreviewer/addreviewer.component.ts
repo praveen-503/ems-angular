@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { ProjectService } from 'src/app/shared/services/project.service';
+import { Reviewer } from '../reviewer.model';
+import { AdminService } from '../../admin.service';
 
 @Component({
   selector: 'app-addreviewer',
@@ -12,10 +15,13 @@ export class AddreviewerComponent implements OnInit {
   submitted = false;
   hideProject: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder ,
+              private projectService:ProjectService ,
+              private adminService:AdminService) { }
 
   ngOnInit() {
-    
+    this.projectService.getProjects();
+
     this.addReviewewForm = this.formBuilder.group({
       EmployeeId:[''],
       Name: [''],
@@ -39,34 +45,36 @@ export class AddreviewerComponent implements OnInit {
       return;
     }
     console.log(this.addReviewewForm.value);
-    this.insertRecord();
+    this.insertReviewerRecord(this.addReviewewForm.value as Reviewer);
   }
 
-  myFunction() {
+  isReviewer() {
 
     var res = this.f.IsReviewer.value;
     if (res == true) {
       this.hideProject = false;
+      //role=1;
     }
     else {
       this.hideProject = true;
+      //role=3;
     }
   }
 
 
-  insertRecord() {
+  insertReviewerRecord(data:Reviewer) {
     console.log(this.addReviewewForm.value,"Value is above");
+    this.adminService.postReviewer(data).subscribe(
+      res=>{
         this.submitted = false;
         this.hideProject = false;
         this.addReviewewForm.reset();
+      },
+      err=>{
+        console.log(err);
+      }
+    )  
+   
    }
-
-    projectList = [
-    { id: 1, name: 'Angular 2+' },
-    { id: 2, name: 'Angular 4' },
-    { id: 3, name: 'Angular 5' },
-    { id: 4, name: 'Angular 6' },
-    { id: 5, name: 'Angular 7' }
-  ];
 
 }
