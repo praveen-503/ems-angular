@@ -4,5 +4,4 @@ export class Employee{
     Name:string;
     Password:string;
     ProjectId:number;
-    IsAccept:boolean;
 }

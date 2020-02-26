@@ -15,9 +15,9 @@
           <div class="form-group">
             <label>Employee ID</label>
             <input
-              type="text"
+              type="number"
               pattern= "[0-9]"
-              onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+              
               formControlName="EmployeeId"
               class="form-control border-primary"
               [ngClass]="{ 'is-invalid': submitted && f.EmployeeId.errors }"
@@ -31,7 +31,7 @@
               <label>First Name</label>
               <input
                 type="text"
-                onkeypress="return event.charCode >= 65 && event.charCode <= 90"
+                
                 formControlName="FirstName"
                 class="form-control border border-primary"
                 [ngClass]="{ 'is-invalid': submitted && f.FirstName.errors }"
@@ -49,7 +49,6 @@
               <label>Last Name</label>
               <input
                 type="text"
-                onkeypress="return event.charCode >= 65 && event.charCode <= 90"
                 formControlName="LastName"
                 class="form-control border-primary"
                 [ngClass]="{ 'is-invalid': submitted && f.LastName.errors }"
@@ -69,8 +68,9 @@
             <input
               type="password"
               formControlName="Password"
-              class="form-control border-primary"
+              class="form-control border-primary fa fa-fw fa-eye field-icon toggle-password"
               [ngClass]="{ 'is-invalid': submitted && f.Password.errors }"
+              style="cursor: pointer; pointer-events: all;"
             />
             <div
               *ngIf="submitted && f.Password.errors"

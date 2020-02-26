@@ -11,10 +11,6 @@ addproject;
   constructor(private service:BillingManagerService) { }
 
   ngOnInit() {
-   // this.service.get();
-  }
-  billingForm()
-  {
-    // this.service.FormData=Object.assign({},bm);
+  
   }
 }
