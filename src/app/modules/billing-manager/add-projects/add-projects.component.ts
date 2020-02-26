@@ -4,83 +4,61 @@ import { BillingManagerService } from '../billing-manager.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Client } from 'src/app/shared/models/client.model';
-
-
+import { ProjectService } from 'src/app/shared/services/project.service';
+import { Project } from 'src/app/shared/models/project.model';
 @Component({
   selector: 'app-add-projects',
   templateUrl: './add-projects.component.html',
   styleUrls: ['./add-projects.component.scss']
 })
 export class AddProjectsComponent implements OnInit {
-
-  addForm: FormGroup;
-
+  projectForm: FormGroup;
   submitted = false;
-  //public codeValue: string;
-
-
-
-  constructor(private formBuilder: FormBuilder, 
+  constructor(private formBuilder: FormBuilder,
     private billingmanagerservice: BillingManagerService,
-    private toastr:ToastrService,
-    private route:Router) { }
-
+    private toastr: ToastrService,
+    private route: Router
+   ) { }
   ngOnInit() {
-  this.billingmanagerservice.getClient();
-    this.addForm = this.formBuilder.group(
+    this.billingmanagerservice.getClient();
+    this.projectForm = this.formBuilder.group(
       {
-
-        Projectname: ['', Validators.required],
-        Name:[]
+        ClientId: ['', Validators.required],
+        Name: ['', Validators.required]
       }
     )
   }
-  // clientList(){
-  //   this.billingmanagerservice.getClient();
-  // }
-
- clientList=[
-   this.billingmanagerservice.getClient().toPromise()
-   .then(data =>(this.billingmanagerservice.clientlist = data as Client[]))
- ]
   get f() {
-    return this.addForm.controls;
+    return this.projectForm.controls;
   }
   onSubmit() {
     this.submitted = true;
-    if (this.addForm.invalid) {
-      console.log(this.addForm.value);
+    if (this.projectForm.invalid) {
+      console.log(this.projectForm.value);
       return;
     }
-    this.AddProject();
-
+    this.AddProject(this.projectForm.value as Project);
   }
   onReset() {
-    this.addForm.reset();
+    this.projectForm.reset();
   }
-
-  AddProject() {
-  
-    console.log(this.addForm.value+"start");
-
-    this.billingmanagerservice.postProject(this.addForm.value).subscribe(
+  AddProject(form:Project) {
+    console.log(this.projectForm.value + "start");
+    this.billingmanagerservice.postProject(form).subscribe(
       res => {
-        console.log(this.addForm.value+"res");
-        if(res.status==200){
-          this.toastr.success('Added Successfully', 'client' )
+        console.log(this.projectForm.value + "res");
+        if (res.status == 201) {
+          this.toastr.success('Added Successfully', 'project')
           this.route.navigate(['/billing-manager']);
-      }
-        console.log(this.addForm.value);
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.addForm.value));
-        this.addForm.reset();
+        }
+        console.log(res);
+        this.projectForm.reset();
       },
       err => {
         console.log(err);
       }
     )
-
   }
-
 }
 
 

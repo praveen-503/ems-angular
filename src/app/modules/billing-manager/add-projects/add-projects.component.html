@@ -1,33 +1,27 @@
 <div class="row justify-content-center pt-5">
   <div class="col-md-10 justify-content-center">
     <div class="card">
-      <!-- <div class="card col-md-10"> -->
       <header class="card-header bg-primary">
         <h4 class="card-title mt-2 text-white ">Add projects</h4>
-
       </header>
       <br>
-      <form class="" [formGroup]="addForm" (ngSubmit)="onSubmit()">
+      <form class="" [formGroup]="projectForm" (ngSubmit)="onSubmit()">
         <div class="card-body">
-          
           <div class="form-group">
             <label>Project Name</label>
-            <input type="text"  formControlName="Projectname" class="form-control  border-primary"
-              [ngClass]="{ 'is-invalid': submitted && f.Projectname.errors }" >
-            <div *ngIf="submitted && f.Projectname.errors" class="invalid-feedback">
-              <div *ngIf="f.Projectname.errors.required">Project Name is required</div>
+            <input type="text"  formControlName="Name" class="form-control  border-primary"
+              [ngClass]="{ 'is-invalid': submitted && f.Name.errors }" >
+            <div *ngIf="submitted && f.Name.errors" class="invalid-feedback">
+              <div *ngIf="f.Name.errors.required">Project Name is required</div>
             </div>
-
           </div>
-
           <div class="form-group ">
             <label>Client</label>
-            <input list="clientid" formControlName="Name" class="form-control border-primary" >
+            <input list="clientid" formControlName="ClientId" class="form-control border-primary" >
             <datalist id="clientid">
-              <option *ngFor="let i of clientList" [value]="i.id" >{{i.name}}</option>
+              <option *ngFor="let c of billingmanagerservice.clientlist" [value]="c.Id" >{{c.Name}}</option>
             </datalist>
           </div> 
-
           <div class="form-group">
             <div class="text-center">
               <button type="submit" class="btn bg-primary text-white mr-1">Add</button>
@@ -36,7 +30,6 @@
               </button>
             </div>
           </div>
-          <!-- form-group// -->
         </div>
       </form>
     </div>

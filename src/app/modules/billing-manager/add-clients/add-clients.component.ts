@@ -4,63 +4,48 @@ import { BillingManagerService } from '../billing-manager.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Client } from 'src/app/shared/models/client.model';
-
+import { Project } from 'src/app/shared/models/project.model';
 @Component({
   selector: 'app-add-clients',
   templateUrl: './add-clients.component.html',
   styleUrls: ['./add-clients.component.scss']
 })
 export class AddClientsComponent implements OnInit {
-  addClient: FormGroup;
+  clientForm: FormGroup;
   submitted = false;
-  //public codeValue: string;
-
- 
-
-
-  constructor(private formBuilder: FormBuilder, 
+  constructor(private formBuilder: FormBuilder,
     private billingmanagerservice: BillingManagerService,
-     private toastr:ToastrService,
-     private route:Router) { }
-
+    private toastr: ToastrService,
+    private route: Router) { }
   ngOnInit() {
-    this.addClient = this.formBuilder.group(
-      {Name: [''],})
+    this.clientForm = this.formBuilder.group(
+      { Name: [''], })
   }
-  
   onSubmit() {
-    console.log('Error checking');
-    this.toastr.success('Added Successfully', 'client' )
-    return
     this.submitted = true;
-    if (this.addClient.invalid) {
-      console.log(this.addClient.value);
+    if (this.clientForm.invalid) {
+      console.log(this.clientForm.value);
       return;
     }
-    this.AddClient(this.addClient.value as Client);
+    this.AddClient(this.clientForm.value as Client);
   }
   onReset() {
-    this.addClient.reset();
+    this.clientForm.reset();
   }
-
-  AddClient(form:Client) {
-    
-// console.log(this.addClient.value);
+  AddClient(form: Client) {
     this.billingmanagerservice.postClient(form).subscribe(
       res => {
-        if(res.status==200){
-          this.toastr.success('Added Successfully', 'client' )
+        if (res.status == 201) {
+          this.toastr.success('Added Successfully', 'client')
+          this.billingmanagerservice.getClient();
           this.route.navigate(['/billing-manager']);
         }
         console.log(res);
-       // alert('SUCCESS!! :-)\n\n' + JSON.stringify(form));
-        this.addClient.reset();
+        this.clientForm.reset();
       },
       err => {
         console.log(err);
       }
     )
   }
-  
-
 }
